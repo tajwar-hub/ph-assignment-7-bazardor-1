@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import MarketTable from "@/components/MarketTable";
-
 
 type Market = {
     market: string;
@@ -52,7 +53,12 @@ function unitBn(unit: string) {
 }
 
 const ProductPage = async ({ params }: PageProps) => {
+
     const { slug } = await params;
+    const session = await auth.api.getSession({ headers: await headers() });
+    if (!session) {
+        redirect(`/signin?callbackUrl=/product/${slug}&notice=login-required`);
+    }
 
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products`, { cache: "no-store" });
     if (!res.ok) {
@@ -81,21 +87,18 @@ const ProductPage = async ({ params }: PageProps) => {
 
     return (
         <main className="mx-auto max-w-4xl space-y-6 px-4 py-6">
-            {/* Breadcrumb */}
             <nav className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
                 <Link href="/" className="hover:text-green-700">হোম</Link>
-                <span>›</span>
-                <Link
-                    href={`/category/${product.category}`}
-                    className="hover:text-green-700"
-                >
+                <span> › </span>
+
+                <Link href={`/category/${product.category}`} className="hover:text-green-700">
                     {product.categoryNameBn}
                 </Link>
-                <span>›</span>
+
+                <span> › </span>
                 <span className="text-gray-800">{product.nameBn}</span>
             </nav>
 
-            {/* Top summary card */}
             <section className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-4">
                     <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-3xl">
@@ -121,7 +124,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
                 <div className="rounded-xl bg-gray-100 px-6 py-3 text-center">
                     <p className="text-xs text-gray-500">আজকের দাম</p>
-                    
+
                     <p className="text-3xl font-bold text-gray-900">
                         {toBn(product.today)}
                     </p>
@@ -182,5 +185,4 @@ const ProductPage = async ({ params }: PageProps) => {
         </main>
     );
 }
-
 export default ProductPage
