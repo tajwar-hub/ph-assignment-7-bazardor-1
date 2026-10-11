@@ -26,22 +26,12 @@ const Hero = () => {
                         বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
                     </p>
 
-                    <a
-                        href="#সব-পণ্য"
-                        className="mt-6 inline-block rounded-lg bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-700"
-                    >
+                    <a href="#সব-পণ্য" className="mt-6 inline-block rounded-lg bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-700">
                         সব পণ্য দেখুন
                     </a>
                 </div>
 
-                <Image
-                    src="/bazar-hero.png"
-                    alt="বাজারের সবজি ও ফলের ঝুড়ি"
-                    width={360}
-                    height={260}
-                    priority
-                    className="h-auto w-56 md:w-80"
-                />
+                <Image src="/bazar-hero.png" alt="বাজারের সবজি ও ফলের ঝুড়ি" width={360} height={260} priority className="rounded-xl h-auto w-44 md:w-80 hover:bg-gray-50" />
             </div>
         </section>
     );

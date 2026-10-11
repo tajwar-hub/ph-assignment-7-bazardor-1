@@ -34,20 +34,15 @@ const Navbar = async () => {
                 <div className="flex items-center justify-between py-3">
                     <Link href="/" className="flex items-center gap-3">
                         <div className="p-2 bg-green-400 rounded-xl">
-                            <Image
-                                src="/logo-icon.png"
-                                alt="বাজার দর"
-                                width={30}
-                                height={30}
-                                className="rounded-lg"
-                            />
+                            <Image src="/logo-icon.png" alt="বাজার দর" width={30} height={30} />
                         </div>
 
                         <div>
-                            <p className="text-lg font-bold leading-tight text-gray-900">
+                            <p className="text-lg font-bold leading-tight text-gray-900 hover:text-emerald-500">
                                 বাজার দর
                             </p>
-                            <p className="text-xs text-gray-500">{date}</p>
+                            
+                            <p className="text-xs text-gray-500 hover:text-emerald-200">{date}</p>
                         </div>
                     </Link>
 

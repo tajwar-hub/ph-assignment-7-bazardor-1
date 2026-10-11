@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { FaChevronCircleDown } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 
 const SortDropdown = ({ current }: { current: string }) => {
     const router = useRouter();
@@ -32,7 +32,7 @@ const SortDropdown = ({ current }: { current: string }) => {
 
                 <svg className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2">
 
-                    <FaChevronCircleDown />
+                    <FaChevronDown />
                 </svg>
             </div>
         </div>

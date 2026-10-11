@@ -42,10 +42,7 @@ const ProfileUpdatePage = () => {
                 <p className="mt-1 text-sm text-gray-500">আপনার নতুন নাম লিখুন।</p>
             </div>
 
-            <form
-                onSubmit={handleSubmit}
-                className="mt-6 space-y-4 rounded-xl border border-gray-200 bg-white p-6"
-            >
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4 rounded-xl border border-gray-200 bg-white p-6">
                 <div>
                     <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-800">
                         নাম

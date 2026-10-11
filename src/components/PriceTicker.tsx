@@ -41,7 +41,7 @@ const PriceTicker = async () => {
 
     return (
         <div className="border-b border-gray-200 bg-white">
-            <Marquee speed={40} pauseOnHover gradient={false}>
+            <Marquee speed={40} pauseOnHover gradient={false} className="hover:cursor-pointer">
                 {products.map((p) => {
                     const isUp = p.change.dir === "up";
                     const isDown = p.change.dir === "down";

@@ -20,11 +20,11 @@ export default function SignUpPage() {
         const confirmPassword = String(formData.get("confirmPassword"));
 
         if (password.length < 8) {
-            toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
+            toast.error("Password must be at least 8 letters");
             return;
         }
         if (password !== confirmPassword) {
-            toast.error("পাসওয়ার্ড দুটি মিলছে না");
+            toast.error(`Previous password isn"t matching`);
             return;
         }
 
@@ -33,11 +33,11 @@ export default function SignUpPage() {
         setLoading(false);
 
         if (error) {
-            toast.error(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
+            toast.error(error.message || ` Account Couldn't be Created `);
             return;
         }
 
-        toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এখন সাইন ইন করুন");
+        toast.success(" Account Created Successfully! Please Sign In Now ");
         router.push("/signin");
     }
 
@@ -45,25 +45,18 @@ export default function SignUpPage() {
         <main className="mx-auto max-w-6xl px-4 py-10">
             <div className="text-center">
                 <h1 className="text-2xl font-bold text-gray-900">অ্যাকাউন্ট তৈরি করুন</h1>
+
                 <p className="mt-1 text-sm text-gray-500">
                     বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।
                 </p>
             </div>
 
-            <form
-                onSubmit={handleSubmit}
-                className="mx-auto mt-6 max-w-sm space-y-4 rounded-xl border border-gray-200 bg-white p-6"
-            >
+            <form onSubmit={handleSubmit} className="mx-auto mt-6 max-w-sm space-y-4 rounded-xl border border-gray-200 bg-white p-6">
                 <div>
                     <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-800">
                         নাম
                     </label>
-                    <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Rhythm"
+                    <input id="name" name="name" type="text" required placeholder=" Your Name "
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                 </div>
@@ -72,12 +65,7 @@ export default function SignUpPage() {
                     <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-800">
                         ইমেইল
                     </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="you@example.com"
+                    <input id="email" name="email" type="email" required placeholder=" you@example.com "
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                 </div>
@@ -86,30 +74,16 @@ export default function SignUpPage() {
                     <label htmlFor="password" className="mb-1 block text-sm font-medium text-gray-800">
                         পাসওয়ার্ড
                     </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                        minLength={8}
-                        placeholder="at least 8 characters"
+                    <input id="password" name="password" type="password" required minLength={8} placeholder=" At Least 8 Characters "
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                 </div>
 
                 <div>
-                    <label
-                        htmlFor="confirmPassword"
-                        className="mb-1 block text-sm font-medium text-gray-800"
-                    >
+                    <label htmlFor="confirmPassword" className="mb-1 block text-sm font-medium text-gray-800">
                         পাসওয়ার্ড নিশ্চিত করুন
                     </label>
-                    <input
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type="password"
-                        required
-                        placeholder="Enter the password again"
+                    <input id="confirmPassword" name="confirmPassword" type="password" required placeholder=" Enter The Password Again "
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
                 </div>
@@ -123,7 +97,8 @@ export default function SignUpPage() {
                 </button>
 
                 <p className="text-center text-sm text-gray-600">
-                    অ্যাকাউন্ট আছে?{" "}
+                    অ্যাকাউন্ট আছে? {" "}
+
                     <Link href="/signin" className="font-medium text-green-600 hover:underline">
                         সাইন ইন করুন
                     </Link>

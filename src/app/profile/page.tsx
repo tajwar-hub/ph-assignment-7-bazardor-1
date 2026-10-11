@@ -8,9 +8,10 @@ import SignOutButton from "@/components/SignOutButton";
 
 const ProfilePage = async () => {
     const session = await auth.api.getSession({ headers: await headers() });
-
-
-    if (!session) redirect("/signin");
+    
+    if (!session) {
+        redirect("/signin")
+    }
 
     const { name, email, image } = session.user;
 
