@@ -1,6 +1,5 @@
 import Marquee from "react-fast-marquee";
 
-
 type Product = {
     id: number;
     slug: string;
@@ -36,15 +35,9 @@ function unitBn(unit: string) {
 
 
 const PriceTicker = async () => {
-    
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products`);
     const data = await res.json()
     const products: Product[] = data
-
-    
-    if (products.length === 0) {
-        return <div className="h-10 animate-pulse border-b border-gray-200 bg-gray-100" />;
-    }
 
     return (
         <div className="border-b border-gray-200 bg-white">

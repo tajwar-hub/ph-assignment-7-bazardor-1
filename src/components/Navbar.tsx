@@ -1,9 +1,6 @@
-"use client"
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import NavLinks from "./NavLinks";
 
 
 type Category = {
@@ -13,30 +10,15 @@ type Category = {
     icon: string;
 };
 
-const Navbar =  () => {
-    const pathname = usePathname();
-    const [categories, setCategories] = useState<Category[]>([]);
+const Navbar = async () => {
 
     const date = new Date().toLocaleDateString("bn-BD", {
         dateStyle: "full",
     });
 
-
-
-    useEffect(() => {
-
-        async function loadCategories() {
-            try {
-                const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories`);
-                const data = await res.json();
-                setCategories(Array.isArray(data) ? data : data.data ?? []);
-            } catch (error) {
-                console.error("Failed to load categories", error);
-            }
-        }
-
-        loadCategories();
-    }, []);
+    const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories`);
+    const data = await res.json();
+    const categories: Category[] = data
 
     return (
         <header className="border-b border-gray-200 bg-white">
@@ -68,6 +50,7 @@ const Navbar =  () => {
                         >
                             সাইন ইন
                         </Link>
+                        
                         <Link
                             href="/signup"
                             className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-green-700"
@@ -79,29 +62,9 @@ const Navbar =  () => {
 
 
                 <nav className="flex gap-2 overflow-x-auto pb-3">
-                    {categories.length === 0
-                        ? Array.from({ length: 8 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="h-8 w-20 shrink-0 animate-pulse rounded-full bg-gray-200"
-                            />
-                        ))
-                        : categories.map((cat) => {
-                            const isActive = pathname === `/category/${cat.slug}`;
-                            return (
-                                <Link
-                                    key={cat.id}
-                                    href={`/category/${cat.slug}`}
-                                    className={`flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium transition ${isActive
-                                        ? "bg-green-600 text-white"
-                                        : "text-gray-700 hover:bg-green-50"
-                                        }`}
-                                >
-                                    <span>{cat.icon}</span>
-                                    <span>{cat.nameBn}</span>
-                                </Link>
-                            );
-                        })}
+                    {categories.length === 0 ? Array.from({ length: 8 }).map((_, i) => (
+                        <div key={i} className="h-8 w-20 shrink-0 animate-pulse rounded-full bg-gray-200" />
+                    )) : <NavLinks categories={categories} />}
                 </nav>
             </div>
         </header>
