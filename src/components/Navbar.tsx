@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { headers } from "next/headers"; 
+import { auth } from "@/lib/auth"; 
 import NavLinks from "./NavLinks";
+import UserMenu from "@/components/UserMenu"; 
 
 
 type Category = {
@@ -14,11 +17,16 @@ const Navbar = async () => {
 
     const date = new Date().toLocaleDateString("bn-BD", {
         dateStyle: "full",
+        timeZone: "Asia/Dhaka"
     });
 
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories`);
     const data = await res.json();
-    const categories: Category[] = data
+    const categories: Category[] = Array.isArray(data) ? data : [];
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
 
     return (
         <header className="border-b border-gray-200 bg-white">
@@ -43,21 +51,29 @@ const Navbar = async () => {
                         </div>
                     </Link>
 
-                    <div className="flex items-center gap-2">
-                        <Link
-                            href="/signin"
-                            className="px-3 py-2 text-sm font-medium text-gray-800 hover:text-green-700"
-                        >
-                            সাইন ইন
-                        </Link>
-                        
-                        <Link
-                            href="/signup"
-                            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-green-700"
-                        >
-                            সাইন আপ
-                        </Link>
-                    </div>
+                   {session ? (
+                        <UserMenu
+                            name={session.user.name}
+                            email={session.user.email}
+                            image={session.user.image}
+                        />
+                    ) : (
+                        <div className="flex items-center gap-2">
+                            <Link
+                                href="/signin"
+                                className="px-3 py-2 text-sm font-medium text-gray-800 hover:text-green-700"
+                            >
+                                সাইন ইন
+                            </Link>
+
+                            <Link
+                                href="/signup"
+                                className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-green-700"
+                            >
+                                সাইন আপ
+                            </Link>
+                        </div>
+                    )}
                 </div>
 
 

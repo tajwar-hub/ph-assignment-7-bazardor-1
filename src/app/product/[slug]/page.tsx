@@ -121,42 +121,52 @@ const ProductPage = async ({ params }: PageProps) => {
 
                 <div className="rounded-xl bg-gray-100 px-6 py-3 text-center">
                     <p className="text-xs text-gray-500">আজকের দাম</p>
-                    <p className="text-3xl font-bold text-gray-900">{toBn(product.today)}</p>
-                    <p className="text-xs text-gray-500">টাকা / {unitBn(product.unit)}</p>
-                    <span
-                        className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-semibold ${badgeStyle}`}
-                    >
+                    
+                    <p className="text-3xl font-bold text-gray-900">
+                        {toBn(product.today)}
+                    </p>
+
+                    <p className="text-xs text-gray-500">
+                        টাকা / {unitBn(product.unit)}
+                    </p>
+
+                    <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-semibold ${badgeStyle}`}>
                         {isUp ? "▲" : isDown ? "▼" : "—"} {toBn(product.change.pct, 1)}%
                     </span>
                 </div>
             </section>
 
-            {/* Price summary + market table */}
             <section className="rounded-xl border border-gray-200 bg-white p-5">
                 <h2 className="text-lg font-bold text-gray-900">দামের সারসংক্ষেপ</h2>
 
                 <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <div className="rounded-xl border border-gray-200 p-4">
                         <p className="text-xs text-gray-500">সর্বনিম্ন দাম</p>
+
                         <p className="mt-1 text-xl font-bold text-green-600">
                             {toBn(minPrice)} <span className="text-sm">টাকা</span>
                         </p>
+
                         <p className="mt-1 text-xs text-gray-500">সবচেয়ে কম দামের বাজার</p>
                     </div>
 
                     <div className="rounded-xl border border-gray-200 p-4">
                         <p className="text-xs text-gray-500">সর্বোচ্চ দাম</p>
+
                         <p className="mt-1 text-xl font-bold text-red-600">
                             {toBn(maxPrice)} <span className="text-sm">টাকা</span>
                         </p>
+
                         <p className="mt-1 text-xs text-gray-500">সবচেয়ে বেশি দামের বাজার</p>
                     </div>
 
                     <div className="rounded-xl border border-gray-200 p-4">
                         <p className="text-xs text-gray-500">গড় দাম</p>
+
                         <p className="mt-1 text-xl font-bold text-gray-900">
                             {toBn(avgPrice)} <span className="text-sm">টাকা</span>
                         </p>
+
                         <p className="mt-1 text-xs text-gray-500">
                             প্রতি {unitBn(product.unit)} এর হিসাবে
                         </p>

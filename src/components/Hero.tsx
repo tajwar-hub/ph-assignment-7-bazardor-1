@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Hero() {
+const Hero = () => {
     const today = new Date().toLocaleDateString("bn-BD", {
         weekday: "long",
         day: "numeric",
@@ -46,3 +46,5 @@ export default function Hero() {
         </section>
     );
 }
+
+export default Hero
