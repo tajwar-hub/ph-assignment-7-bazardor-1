@@ -32,7 +32,7 @@ function toBn(num: number) {
     return num.toLocaleString("bn-BD");
 }
 
-export default async function CategoryPage({ params, searchParams }: PageProps) {
+const CategoryPage = async ({ params, searchParams }: PageProps) => {
 
     const { slug } = await params;
     const { sort } = await searchParams;
@@ -107,3 +107,4 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         </main>
     );
 }
+export default CategoryPage

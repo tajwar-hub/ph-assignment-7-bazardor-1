@@ -19,7 +19,7 @@ function CardSkeleton() {
     );
 }
 
-export default function CategoryLoading() {
+const CategoryLoading = () => {
     return (
         <main className="mx-auto max-w-6xl space-y-4 px-4 py-6">
             <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-5">
@@ -43,3 +43,5 @@ export default function CategoryLoading() {
         </main>
     );
 }
+
+export default CategoryLoading

@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { FaChevronCircleDown } from "react-icons/fa";
 
-export default function SortDropdown({ current }: { current: string }) {
+const SortDropdown = ({ current }: { current: string }) => {
     const router = useRouter();
     const pathname = usePathname();
 
@@ -21,7 +21,9 @@ export default function SortDropdown({ current }: { current: string }) {
                     id="sort"
                     value={current}
                     onChange={handleChange}
-                    className="cursor-pointer appearance-none rounded-md border border-gray-300 bg-white py-1.5 pl-3 pr-8 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="cursor-pointer appearance-none rounded-md border border-gray-300
+                     bg-white py-1.5 pl-3 pr-8 text-sm text-gray-800 
+                     focus:outline-none focus:ring-2 focus:ring-green-500"
                 >
                     <option value="default">ডিফল্ট</option>
                     <option value="low">দাম: কম থেকে বেশি</option>
@@ -36,3 +38,5 @@ export default function SortDropdown({ current }: { current: string }) {
         </div>
     );
 }
+
+export default SortDropdown
